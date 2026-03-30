@@ -1,4 +1,4 @@
-# OpenMP multithreaded separate chaining hashtable for strings
+# Separate chaining hashtable for strings
 
 The hashtable consists of an `std::vector` of `std::list <std::string>*`. The table does not allow duplicates; on each insertion, it checks if the string does not already exist and only then inserts the string.
 
