@@ -1,6 +1,6 @@
 # hashtable_non_multithreaded
 
-OpenMP multithreaded separate chaining hashtable for strings. The hashtable consists of a `std::vector` of `std::list <std::string>*`. The hashtable does not allow duplicates; on each insertion, it checks if the string does not already exist and only then inserts the string.
+OpenMP multithreaded separate chaining hashtable for strings. The hashtable consists of an `std::vector` of `std::list <std::string>*`. The hashtable does not allow duplicates; on each insertion, it checks if the string does not already exist and only then inserts the string.
 
 A function pointer is used for hash functions that take an `std::string` and the number of slots in the hash table. The function pointer is set in the constructor. This lets us use any hash function for a given table.
 
