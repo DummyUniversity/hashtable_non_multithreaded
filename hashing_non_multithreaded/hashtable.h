@@ -2,6 +2,7 @@
 #define HASH_TABLE_20260317_H
 
 #include <iostream>
+#include <cstdint>
 #include <vector>
 #include <list>
 

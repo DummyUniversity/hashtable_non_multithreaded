@@ -71,9 +71,11 @@ bool Hash_Table::operator == (const Hash_Table &other) const
 		{
 			if (slots[i]->size() == other.slots[i]->size())
 			{
-				for (list<string>::iterator ait = slots[i]->begin(), bit = other.slots[i]->begin();
-				ait != slots[i]->end(), bit != other.slots[i]->end();
-				ait++, bit++)
+//				for (list<string>::iterator ait = slots[i]->begin(), bit = other.slots[i]->begin();
+//				ait != slots[i]->end() && bit != other.slots[i]->end();
+//				ait++, bit++)
+
+				for (list<string>::iterator bit = other.slots[i]->begin(); bit != other.slots[i]->end(); bit++)
 				{
 					if (!searchInList(slots[i], *bit))
 					{
@@ -96,6 +98,58 @@ bool Hash_Table::operator == (const Hash_Table &other) const
 	}
 	
 	return true;
+
+/*
+
+Edit (2026 05 24):
+
+The line 
+
+				for (list<string>::iterator bit = other.slots[i]->begin(); bit != other.slots[i]->end(); bit++)
+
+initially read
+
+				for (list<string>::iterator ait = slots[i]->begin(), bit = other.slots[i]->begin();
+				ait != slots[i]->end() , bit != other.slots[i]->end();
+				ait++, bit++)
+
+and caused this warning
+
+				warning: ignoring return value of 
+				‘bool std::operator!=(const _List_iterator<__cxx11::basic_string<char> >::_Self&, const _List_iterator<__cxx11::basic_string<char> >::_Self&)’, 
+				declared with attribute ‘nodiscard’ [-Wunused-result]
+
+That is because 
+
+				ait != slots[i]->end() , bit != other.slots[i]->end();
+
+would not cause the loop to terminate even if this->slots[i] is smaller than other.slots[i] because with the comma operator between the two 
+conditions, only the second is actually checked.
+
+				ait != slots[i]->end() 
+
+is evaluated, but its bool result is completely ignored.
+
+The way the code is written, this should never be a problem because the loop is preceded by
+
+				if (slots[i]->size() == other.slots[i]->size())
+
+It is still best to replace the comma operator with the && operator.
+
+				for (list<string>::iterator ait = slots[i]->begin(), bit = other.slots[i]->begin();
+				ait != slots[i]->end() && bit != other.slots[i]->end();
+				ait++, bit++)
+
+However, it is even better to replace it with
+
+				for (list<string>::iterator bit = other.slots[i]->begin(); bit != other.slots[i]->end(); bit++)
+
+I had realized this particular bit when I initially wrote this code but I was too frustrated at that point to improve it. In any case, 
+I have updated it now.
+
+*/
+
+
 }
 
 void Hash_Table::printList(list<string>* l) const
