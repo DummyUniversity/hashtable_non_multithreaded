@@ -18,7 +18,7 @@ Run command: `./a.out numOfThreads`
 
 ### Minor
 
-The `‘<cstdint>` header was miisng from some files and has now been included. The code compiled without any errors and warnings on Windows with `g++.exe (tdm64-1) 9.2.0`. On WSL with `g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0`, however, this caused compilation errors. 
+The `‘<cstdint>` header was missing from some files and has now been included. The code compiled without any errors and warnings on Windows with `g++.exe (tdm64-1) 9.2.0`. On WSL with `g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0`, however, this caused compilation errors. 
 
 ### Major
 
