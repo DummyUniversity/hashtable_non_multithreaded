@@ -40,15 +40,12 @@ bool Hash_Table::insert(const string str)
 	bool doesAlreadyExit = false;
 
 	int index = str_hash_function(str, noOfSlots);
-//	std::list<std::string>* p = slots[index];
 
-//	if (!searchInList(p, str))
 	if (!searchInList(slots[index], str))
 	{
 //		std::this_thread::sleep_for(std::chrono::milliseconds(11));	//For demonstration purposes
 		//https://www.reddit.com/r/cpp_questions/comments/1kruwl9/this_threadsleep_for_and_this_threadsleep_until/		
 
-//		p->push_back(str);	//Actual insertion
 		slots[index]->push_back(str);
 		doesAlreadyExit = false;
 	}
@@ -71,10 +68,6 @@ bool Hash_Table::operator == (const Hash_Table &other) const
 		{
 			if (slots[i]->size() == other.slots[i]->size())
 			{
-//				for (list<string>::iterator ait = slots[i]->begin(), bit = other.slots[i]->begin();
-//				ait != slots[i]->end() && bit != other.slots[i]->end();
-//				ait++, bit++)
-
 				for (list<string>::iterator bit = other.slots[i]->begin(); bit != other.slots[i]->end(); bit++)
 				{
 					if (!searchInList(slots[i], *bit))
