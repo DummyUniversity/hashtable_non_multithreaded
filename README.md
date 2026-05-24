@@ -42,7 +42,7 @@ That is because
 ait != slots[i]->end() , bit != other.slots[i]->end();
 ```
 
-would not cause the loop to terminate even if this->slots[i] is smaller than other.slots[i] because with the comma operator between the two conditions, only the second is actually checked.
+would not cause the loop to terminate even if `this->slots[i]` is smaller than `other.slots[i]` because with the comma operator between the two conditions, only the second is actually checked.
 
 ```
 ait != slots[i]->end() 
@@ -56,7 +56,7 @@ The way the code is written, this should never be a problem because the loop is 
 if (slots[i]->size() == other.slots[i]->size())
 ```
 
-It is still best to replace the comma operator with the && operator.
+It is still best to replace the comma operator with the `&&` operator.
 
 ```
 for (list<string>::iterator ait = slots[i]->begin(), bit = other.slots[i]->begin();
