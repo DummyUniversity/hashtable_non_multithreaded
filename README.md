@@ -14,7 +14,13 @@ Compile command: `g++ main.cpp hash_functions.cpp hashtable.cpp test.cpp -fopenm
 
 Run command: `./a.out numOfThreads`
 
-## Edit (2026 05 24): 
+## Edits (2026 05 24): 
+
+### Minor
+
+The `‘<cstdint>` header was miisng from some files and has now been included. The code compiled without any errors and warnings on Windows with `g++.exe (tdm64-1) 9.2.0`. On WSL with `g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0`, however, this caused compilation errors. 
+
+### Major
 
 In `hashtable.cpp`, the line
 
